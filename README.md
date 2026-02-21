@@ -3,26 +3,27 @@
 </p>
 
 # [Project Name] 🎯
+GentleMind -Digital Journal
 
 ## Basic Details
-
+A mental wellness mobile application ,gentle space for understanding and caring for your mind. 
 ### Team Name: [Name]
 
 ### Team Members
-- Member 1: [Name] - [College]
+- Member 1: [Aiswarya S A] - [Government Engineering College bartton hill Trivandrum]
 - Member 2: [Name] - [College]
 
 ### Hosted Project Link
 [mention your project hosted link here]
 
 ### Project Description
-[2-3 lines about what your project does]
+[GentleMind is a wellness application designed to help users manage stress, overthinking,and emotional burnout through simple daily affirmationsand habits.Unlike complex mental health apps that feel overwhelming , GentleMind focuses on gentle interaction, emotional safety and simplicity.The app provide users with a quiet space to check in with their emotions, reflect through journaling , practice calming techniques and track mood patterns over time. ]
 
 ### The Problem statement
-[What problem are you solving?]
+[many students and young adults experience: constatnt stress and overthinking , emotional exhaustion, difficulty expressing feelings, hesitation to use traditional mental health tools because they feel too serious, complex,or intimidating.Existing solutions may often overload users with features, feel clinical rather than comforting, requires high emotional effort to use consistently.]
 
 ### The Solution
-[How are you solving it?]
+[GentlMind addresses this problem by offering :  simplicity over complexity, emotional comfort over productivity, small consistent actions over overwhelming goals]
 
 ---
 
@@ -31,10 +32,10 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
+- Languages used: [e.g., JavaScript, css, html]
+- Frameworks used: [e.g., React, flask]
 - Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Tools used: [e.g., VS Code, Git, github]
 
 **For Hardware:**
 - Main components: [List main components]
@@ -46,10 +47,10 @@
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: [Quick mood check-ins and mood based theme ]
+- Feature 2: [private journaling and small actions based on mood ]
+- Feature 3: [calm breathing exercises]
+- Feature 4: [private journaling ]
 
 ---
 
@@ -97,7 +98,7 @@ List the key features of your project:
 **System Architecture:**
 
 ![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
+*User Interaction(frontend) they: select their mood, write a journal entry, affirmations, start breathing exercise , mood based small tasks and theme change. Data input: when the user enters data, it collects the input, formats it in simple structure(like JSON) Data storage(current stage), Dta processing , Data output*
 
 **Application Workflow:**
 
@@ -137,41 +138,75 @@ List the key features of your project:
 
 #### API Documentation
 
-**Base URL:** `https://api.yourproject.com`
+**Base URL (local dev):** `http://localhost:4000`
 
-##### Endpoints
+All API endpoints are mounted under the `/api` prefix. Example endpoints implemented in the backend:
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
+- **GET /api/moods**
+  - Description: Returns recent mood check-ins (latest 100)
+  - Response example:
 ```json
-{
-  "status": "success",
-  "data": {}
-}
+[{ "id": 1, "mood": "good", "timestamp": "...", "date": "..." }]
 ```
 
-**POST /api/endpoint**
-- **Description:** [What it does]
-- **Request Body:**
+- **POST /api/moods**
+  - Description: Create a new mood check-in
+  - Request body:
 ```json
-{
-  "field1": "value1",
-  "field2": "value2"
-}
+{ "mood": "good", "timestamp": "2024-02-21T12:34:56", "date": "Sat Feb 21 2026" }
 ```
-- **Response:**
+  - Response example:
 ```json
-{
-  "status": "success",
-  "message": "Operation completed"
-}
+{ "id": 123, "mood": "good", "timestamp": "...", "date": "...", "streak": { "current": 3, "last_checkin_date": "..." } }
 ```
 
-[Add more endpoints as needed...]
+- **GET /api/journals**
+  - Description: Returns recent journal entries (latest 100)
+  - Response example:
+```json
+[{ "id": 1, "text": "...", "timestamp": "...", "date": "..." }]
+```
+
+- **POST /api/journals**
+  - Description: Create a new journal entry
+  - Request body:
+```json
+{ "text": "Today I felt...", "timestamp": "...", "date": "..." }
+```
+
+- **GET /api/programs**
+  - Description: Returns available 7-day programs and their tasks
+  - Response example: JSON object with program IDs and day tasks
+
+- **GET /api/userprogram**
+  - Description: Returns the latest saved user program state
+  - Response example:
+```json
+{ "id": 5, "program_id": "gratitude", "day": 2, "completed": [1], "started_at": "..." }
+```
+
+- **POST /api/userprogram**
+  - Description: Save the current user program state
+  - Request body:
+```json
+{ "program_id": "gratitude", "day": 3, "completed": [1,2] }
+```
+
+- **GET /api/streak**
+  - Description: Read-only endpoint returning current streak info
+  - Response example:
+```json
+{ "current": 4, "last_checkin_date": "Sat Feb 20 2026" }
+```
+
+- **POST /api/clear**
+  - Description: Clears moods, journals, user program and resets streak (use with caution)
+  - Response example:
+```json
+{ "ok": true }
+```
+
+If you deploy the backend, update the **Base URL** above to the hosted domain (for example `https://api.yourdomain.com`).
 
 ---
 
