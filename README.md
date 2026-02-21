@@ -84,20 +84,26 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
+![Screenshot1](screenshots.script.png
+)
 *Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
+![Screenshot2](screenshots.index.png
+)
 *Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
+![Screenshot3](screenshots.1.png
+)
 *Add caption explaining what this shows*
 
 #### Diagrams
 
 **System Architecture:**
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram](screenshots.moodcheck.png
+
+
+)
 *User Interaction(frontend) they: select their mood, write a journal entry, affirmations, start breathing exercise , mood based small tasks and theme change. Data input: when the user enters data, it collects the input, formats it in simple structure(like JSON) Data storage(current stage), Dta processing , Data output*
 
 **Application Workflow:**
