@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GentleMind - Digital Journal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Tabs -->
+        <nav class="navbar">
+            <div class="logo">🌙 GentleMind</div>
+            <div class="nav-buttons">
+                <button class="nav-btn active" data-tab="mood-checkin">Mood Check</button>
+                <button class="nav-btn" data-tab="journal">Journal</button>
+                <button class="nav-btn" data-tab="affirmations">Affirmations</button>
+                <button class="nav-btn" data-tab="breathing">Breathe</button>
+                <button class="nav-btn" data-tab="small-thing">Small Step</button>
+                <button class="nav-btn" data-tab="programs">7-Day Program</button>
+                <button class="nav-btn hidden-low-energy" data-tab="history">History</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Mood Check-In Tab -->
+            <section class="tab-content active" id="mood-checkin">
+                <div class="streak-container">
+                    <div class="streak-badge">
+                        <span class="streak-number" id="streak-count">0</span>
+                        <span class="streak-label">🔥 Day Streak</span>
+                    </div>
+                </div>
+                <h2>How are you feeling today?</h2>
+                <div class="mood-selector">
+                    <button class="mood-btn" data-mood="amazing" title="Amazing">😄</button>
+                    <button class="mood-btn" data-mood="good" title="Good">🙂</button>
+                    <button class="mood-btn" data-mood="okay" title="Okay">😐</button>
+                    <button class="mood-btn" data-mood="sad" title="Sad">😔</button>
+                    <button class="mood-btn" data-mood="anxious" title="Anxious">😰</button>
+                </div>
+                <p class="mood-description" id="mood-description"></p>
+                <button class="btn btn-primary" id="save-mood">Save Mood</button>
+                <p class="mood-suggestion" id="mood-suggestion"></p>
+            </section>
+
+            <!-- Journal Tab -->
+            <section class="tab-content" id="journal">
+                <h2>Daily Journal Entry</h2>
+                <div class="journal-container">
+                    <textarea 
+                        id="journal-text" 
+                        placeholder="Write your thoughts (max 120 characters)..."
+                        maxlength="120"
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="char-count">0</span>/120
+                    </div>
+                    <button class="btn btn-primary" id="save-journal">Save Entry</button>
+                    <div class="journal-entries-list">
+                        <h3>Recent Entries</h3>
+                        <div id="journal-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Affirmations Tab -->
+            <section class="tab-content" id="affirmations">
+                <h2>Daily Affirmations</h2>
+                <div class="affirmations-container">
+                    <div class="affirmation-box" id="affirmation-display">
+                        <p id="affirmation-text">Click the button to receive an affirmation</p>
+                    </div>
+                    <button class="btn btn-primary" id="get-affirmation">New Affirmation</button>
+                </div>
+            </section>
+
+            <!-- Breathing Exercise Tab -->
+            <section class="tab-content" id="breathing">
+                <h2>Calm Down - Breathing Exercise</h2>
+                <div class="breathing-container">
+                    <div class="breathing-circle" id="breathing-circle"></div>
+                    <p id="breathing-text">Ready to breathe</p>
+                    <button class="btn btn-primary" id="start-breathing">Start Exercise</button>
+                    <p class="breathing-guide">Breathe in for 4 seconds, hold for 7, breathe out for 8</p>
+                </div>
+            </section>
+
+            <!-- Small Thing to Do Tab -->
+            <section class="tab-content" id="small-thing">
+                <h2>One Small Thing You Can Do Today</h2>
+                <div class="small-thing-container">
+                    <p class="small-thing-mood" id="small-thing-mood"></p>
+                    <div class="suggestion-box" id="suggestion-display">
+                        <p id="suggestion-text">Click the button to get a personalized suggestion</p>
+                    </div>
+                    <button class="btn btn-primary" id="get-suggestion">Get Suggestion</button>
+                </div>
+            </section>
+
+            <!-- 7-Day Guided Programs Tab -->
+            <section class="tab-content" id="programs">
+                <h2>Guided Programs</h2>
+                <div class="programs-container">
+                    <div class="program-list">
+                        <button class="program-option btn" data-program="gratitude">Gratitude Reset</button>
+                        <button class="program-option btn" data-program="stress">Stress Detox</button>
+                        <button class="program-option btn" data-program="confidence">Building Confidence</button>
+                    </div>
+
+                    <div class="program-workspace" id="program-workspace" aria-live="polite">
+                        <div class="program-header">
+                            <h3 id="program-title">Choose a program to begin</h3>
+                            <div class="program-progress" id="program-progress" style="display:none">
+                                <div class="prog-bar"><div id="prog-fill" style="width:0%"></div></div>
+                                <div class="prog-text" id="prog-text">Day 0 / 7</div>
+                            </div>
+                        </div>
+
+                        <div class="program-day" id="program-day" style="display:none">
+                            <h4 id="day-title">Day 1</h4>
+                            <p id="day-task">Task description will appear here.</p>
+                            <div class="program-controls">
+                                <button class="btn" id="prev-day">Previous</button>
+                                <button class="btn btn-primary" id="mark-done">Mark Done</button>
+                                <button class="btn" id="next-day">Next</button>
+                            </div>
+                            <button class="btn btn-secondary" id="exit-program">Exit Program</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Chart Tab -->
+            <section class="tab-content hidden-low-energy" id="history">
+                <h2>Mood History</h2>
+                <div class="history-container">
+                    <canvas id="mood-chart"></canvas>
+                    <div class="mood-stats">
+                        <div class="stat-box">
+                            <p class="stat-label">Total Check-ins</p>
+                            <p class="stat-value" id="total-checkins">0</p>
+                        </div>
+                        <div class="stat-box">
+                            <p class="stat-label">Most Common Mood</p>
+                            <p class="stat-value" id="most-common-mood">-</p>
+                        </div>
+                        <div class="stat-box">
+                            <p class="stat-label">Journal Entries</p>
+                            <p class="stat-value" id="total-entries">0</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" id="clear-data">Clear All Data</button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

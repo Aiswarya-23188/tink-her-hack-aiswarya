@@ -1,0 +1,669 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #6c5ce7;
+    --secondary-color: #d3fe9b;
+    --background: #f5f7fa;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Mood-based theme colors */
+body.mood-amazing {
+    --primary-color: #fdcb6e;
+    --secondary-color: #ffeaa7;
+    --background: #fff9e6;
+    --text-dark: #2d3436;
+}
+
+body.mood-good {
+    --primary-color: #55efc4;
+    --secondary-color: #a9f3dc;
+    --background: #f0fdf8;
+    --text-dark: #2d3436;
+}
+
+body.mood-okay {
+    --primary-color: #74b9ff;
+    --secondary-color: #a9d3ff;
+    --background: #f0f8ff;
+    --text-dark: #2d3436;
+}
+
+body.mood-sad {
+    --primary-color: #6c5ce7;
+    --secondary-color: #a29bfe;
+    --background: #f5f3ff;
+    --text-dark: #2d3436;
+}
+
+body.mood-anxious {
+    --primary-color: #fd79a8;
+    --secondary-color: #ffb3d9;
+    --background: #fff0f5;
+    --text-dark: #2d3436;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background);
+    color: var(--text-dark);
+    transition: var(--transition);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-radius: 0 0 16px 16px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.nav-btn.hidden-low-energy {
+    display: none;
+}
+
+body.low-energy .nav-btn.hidden-low-energy {
+    display: none !important;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tab-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+/* Mood Check-In */
+.streak-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.streak-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e72);
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    min-width: 150px;
+}
+
+.streak-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.streak-label {
+    display: block;
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.mood-selector {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+/* Programs styles */
+.programs-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+}
+
+.program-list {
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.program-option {
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius);
+    background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-sm);
+}
+
+.program-workspace {
+    flex: 1;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    min-height: 220px;
+}
+
+.program-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.prog-bar {
+    width: 180px;
+    height: 10px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+#prog-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.program-day {
+    margin-top: 1rem;
+}
+
+.program-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .programs-container { flex-direction: column; }
+    .program-list { flex-direction: row; gap: 0.5rem; }
+}
+
+.mood-btn {
+    background: white;
+    border: 3px solid var(--secondary-color);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+}
+
+.mood-btn:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.mood-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.15);
+}
+
+.mood-description {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin: 1rem 0;
+    min-height: 30px;
+}
+
+.mood-suggestion {
+    background: rgba(108, 92, 231, 0.1);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--text-dark);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Buttons */
+.btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: var(--text-light);
+}
+
+/* Journal */
+.journal-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    transition: var(--transition);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+.char-count {
+    text-align: right;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.journal-entries-list {
+    margin-top: 2rem;
+}
+
+.journal-entries-list h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.entry-item {
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.8rem;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.entry-date {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.entry-text {
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* Affirmations */
+.affirmations-container {
+    text-align: center;
+}
+
+.affirmation-box {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    box-shadow: var(--shadow-lg);
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#affirmation-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Breathing Exercise */
+.breathing-container {
+    text-align: center;
+}
+
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    animation: none;
+}
+
+.breathing-circle.breathing {
+    animation: breathe 16s infinite;
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.8;
+    }
+    75% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#breathing-text {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.breathing-guide {
+    color: var(--text-light);
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Small Thing */
+.small-thing-container {
+    text-align: center;
+}
+
+.small-thing-mood {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.suggestion-box {
+    background: rgba(108, 92, 231, 0.1);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+}
+
+#suggestion-text {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* History Chart */
+.history-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+#history.hidden-low-energy {
+    display: none;
+}
+
+body.low-energy #history.hidden-low-energy {
+    display: none !important;
+}
+
+#mood-chart {
+    max-width: 100%;
+    margin: 2rem 0;
+}
+
+.mood-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+}
+
+.stat-box.hidden-low-energy {
+    display: none;
+}
+
+body.low-energy .stat-box.hidden-low-energy {
+    display: none !important;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-buttons {
+        gap: 0.3rem;
+    }
+
+    .nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .tab-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .streak-badge {
+        min-width: 120px;
+        padding: 1rem;
+    }
+
+    .streak-number {
+        font-size: 2rem;
+    }
+
+    .streak-label {
+        font-size: 0.85rem;
+    }
+
+    .mood-selector {
+        gap: 0.5rem;
+    }
+
+    .mood-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .affirmation-box,
+    .suggestion-box {
+        padding: 1.5rem 1rem;
+    }
+
+    #affirmation-text,
+    #suggestion-text {
+        font-size: 1.1rem;
+    }
+
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.entry-item {
+    animation: slideIn 0.3s ease;
+}
+
+/* LOW ENERGY MODE (for sad/anxious moods) */
+.hidden-low-energy {
+    display: block;
+}
+
+body.low-energy .hidden-low-energy {
+    display: none !important;
+}
+
+body.low-energy #mood-chart {
+    display: none;
+}
+
+/* Show simplified view in low-energy mode */
+body.low-energy .mood-stats {
+    display: none !important;
+}
+
+body.low-energy .dump-history {
+    display: none !important;
+}
+
+body.low-energy #affirmation-text {
+    font-size: 1.3rem;
+}
+
+body.low-energy .tab-content h2 {
+    font-size: 1.3rem;
+}
+
+body.low-energy .main-content {
+    padding: 1rem;
+}
+
+body.low-energy .affirmation-box,
+body.low-energy .suggestion-box {
+    padding: 1.5rem 1rem;
+    min-height: 100px;
+}
+
